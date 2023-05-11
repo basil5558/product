@@ -27,53 +27,53 @@ public class ProductController {
 	private ProductService productService;
 	
 	//@ResponseStatus(value = HttpStatus.CREATED)
-	@PostMapping("/products")
+	@PostMapping("/product")
 	public ResponseEntity<Product> saveProductDetails(@RequestBody Product product) {
 		
 		productService.saveProductDetails(product);
 		return new ResponseEntity<Product>(product,HttpStatus.CREATED);
 	}
 	
-	@GetMapping("/products/{id}")
+	@GetMapping("/product/{id}")
 	public Product getProductById(@PathVariable("id") Integer productId) {
 		
 		return productService.getProductById(productId);
 	}
 	
-	@GetMapping("/products")
+	@GetMapping("/product")
 	public List<Product> getAllProducts(Pageable page){
 		
 		return productService.getAllProducts(page);
 	}
 	
-	@GetMapping("/products/price/{id}")
+	@GetMapping("/product/price/{id}")
 	public Integer getProductPriceById(@PathVariable("id") Integer productId) {
 		
 		return productService.getProductPriceById(productId);
 	}
 	
-	@DeleteMapping("/products/{id}")
+	@DeleteMapping("/product/{id}")
 	@ResponseStatus(value = HttpStatus.NO_CONTENT)
 	public void deleteProductById(@PathVariable("id") Integer productId) {
 		
 		 productService.deleteProductById(productId);
 	}
 	
-	@PutMapping("/products/{id}")
+	@PutMapping("/product/{id}")
 	public Product updateProductDetails(@RequestBody Product product, @PathVariable("id") Integer productId) {
 		
 		return productService.updateProductDetails(product,productId);
 		
 	}
 	
-	@GetMapping("/products/count/{id}")
+	@GetMapping("/product/count/{id}")
 	public Integer getProductQuantityById(@PathVariable("id") Integer productId) {
 		
 		return productService.getProductQuantityById(productId);
 	}
 
 
-  @PutMapping("/products/updateQuantity")
+  @PutMapping("/product/updateQuantity")
   public void updateProductQuantity(@RequestBody Map<Integer,Integer> idQuantityMap) {
 		 productService.updateProductQuantity(idQuantityMap);
 }
