@@ -46,6 +46,12 @@ public class ProductController {
 		return productService.getAllProducts(page);
 	}
 	
+	@GetMapping("/product/category/{category}")
+	public List<Product> getAllProductBycategory(@PathVariable("category") String category, Pageable page){
+		
+		return productService.getAllProductBycategory(category, page);
+	}
+	
 	@GetMapping("/product/price/{id}")
 	public Integer getProductPriceById(@PathVariable("id") Integer productId) {
 		
