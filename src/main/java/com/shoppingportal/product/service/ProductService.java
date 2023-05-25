@@ -3,6 +3,7 @@ package com.shoppingportal.product.service;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -31,6 +32,11 @@ public class ProductService {
 	public List<Product> getAllProducts(Pageable page) {
 		
 		return productRepository.findAll(page).toList();
+	}
+	
+    public List<Product> getAllProductBycategory(String category, Pageable page) {
+		
+		return productRepository.findAll(page).stream().filter(p->p.getCategory().equalsIgnoreCase(category)).collect(Collectors.toList());
 	}
 
 	public Integer getProductPriceById(Integer productId) {
